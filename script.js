@@ -1,77 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+let input = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+let string = "";
+let arr = Array.from(buttons);
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+            input.value = string;
+        }
 
-body{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-}
-
-.calculator{
-    border: 1px solid #717377;
-    padding: 20px;
-    border-radius: 100px 20px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
-
-}
-
-input{
-    width: 320px;
-    border: none;
-    padding: 24px;
-    margin: 10px;
-    background:black;
-    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.724);
-    font-size: 40px;
-    text-align: right;
-    cursor: pointer;
-    color: #dddddd;
-}
-
-input::placeholder{
-    color:white;
-}
-
-button{
-    border: none;
-    width: 60px;
-    height: 60px;
-    margin: 10px;
-    border-radius: 50%;
-    background: transparent;
-    color: #fafafa;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 50px;
-    border:1px solid rgb(26, 205, 233);
-    background-color: rgba(14, 234, 234, 0.504);
-}
-button:hover{
-    background-color: white;
-    color:black;
-}
-
-button:active{
-    scale:1.1;
-}
-
-
-.equalBtn{
-    background-color: #fb7c14;
-    box-shadow: inset 5px 5px 5px rgba(242, 156, 28, 0.715);
-}
-
-.operator{
-    color: #6dee0a;
-}
+        else if(e.target.innerHTML == 'AC'){
+            string = "";
+            input.value = string;
+        }
+        else if(e.target.innerHTML == 'DEL'){
+            string = string.substring(0, string.length-1);
+            input.value = string;
+        }
+        else{
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+        
+    })
+})
